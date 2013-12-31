@@ -15,7 +15,7 @@ for ( $row = 0; $row < count( $cpservers ); $row++ ) {
 		$ftphost = $cpservers[$row]['FTPhost']; // FTP host IP or domain name
 		$ftpacct = $cpservers[$row]['FTPuser']; // FTP account
 		$ftppass = $cpservers[$row]['FTPpass']; // FTP password
-		$logs_dir = "/cpanel_server"; //FTP Remote Folder
+		$logs_dir = "/$cpanel_server"; //FTP Remote Folder
 
 		$xmlapi = new xmlapi($cpanel_server);
 		$xmlapi->password_auth($cpanel_account,$cpanel_password);
