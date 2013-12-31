@@ -1,5 +1,5 @@
-CPanel-Fullbackup
-=============
+Multi CPanel Domains-Fullbackup
+===============================
 
     CPanel full backup (all files+databases+emails) PHP script
 
@@ -9,6 +9,7 @@ CPanel-Fullbackup
     manually or using crontab services on CPanel based hosting servers.
 
     It needs CPanel account details and FTP host/account details.
+    Check config.php for configuration
 
     Most of the scripts for doing full backups are either old, totally unusable or  commercial. 
 
