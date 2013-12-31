@@ -1,0 +1,61 @@
+<?php
+// Must include cPanel API
+include "xmlapi.php";
+include "config.php";
+
+
+$backupexpireindays=($backupexpireindays*24)*3600; //convert it to seconds, 24 hours * 60 minutes * 60 seconds
+
+for ( $row = 0; $row < count( $cpservers ); $row++ ) {
+
+	    // Credentials for cPanel account
+		$cpanel_server = $cpservers[$row]['Domain']; // Server IP or domain name eg: 212.122.3.77 or cpanel.domain.tld
+		$cpanel_account   = $cpservers[$row]['CPanel_user']; // cPanel username
+		$cpanel_password  = $cpservers[$row]['CPanel_pass']; // cPanel password
+		$ftphost = $cpservers[$row]['FTPhost']; // FTP host IP or domain name
+		$ftpacct = $cpservers[$row]['FTPuser']; // FTP account
+		$ftppass = $cpservers[$row]['FTPpass']; // FTP password
+		$logs_dir = "/cpanel_server"; //FTP Remote Folder
+
+		$xmlapi = new xmlapi($cpanel_server);
+		$xmlapi->password_auth($cpanel_account,$cpanel_password);
+		$xmlapi->set_port('2083');
+
+		// Delete any other backup with filetime greater than expire time, before create new backup
+		$conn_id = ftp_connect($ftphost) or die ("Could not connect to remote FTP");
+		$login_result = ftp_login($conn_id, $ftpacct, $ftppass);
+
+		ftp_chdir($conn_id, $logs_dir);
+		$files = ftp_nlist($conn_id, ".");
+		foreach ($files as $filename) {
+		        $fileCreationTime = ftp_mdtm($conn_id, $filename);
+		        //$date = date("F j, Y, g:i a", ftp_mdtm($conn_id, $filename));
+		        //print "<br>Timestamp of '$filename': $date";
+		        $fileAge=time();
+		        $fileAge=$fileAge-$fileCreationTime;
+		        if ($fileAge > $backupexpireindays) { // Is the file older than the given time span?
+		               //echo "<br>The file $filename is older than Expire time :$expiretime ...Deleting\n";
+		               ftp_delete($conn_id, $filename);
+		               //echo "<br>Deleted<br><br>";
+               		}
+		}
+		ftp_close($conn_id);
+
+		$api_args = array(
+                           'passiveftp',
+                           $ftphost,
+                           $ftpacct,
+                           $ftppass,
+                           $email_notify,
+                            21,
+                            '$logs_dir'
+                         );
+
+	$xmlapi->set_output('json');
+	print $xmlapi->api1_query($cpanel_account,'Fileman','fullbackup',$api_args);
+	unset($xmlapi);
+	sleep(1);
+	//I Was having a problema, when i was backing-up over 26 cPanel accounts from array, some of then did not work,
+	// but it sems that puting this "sleep()" function, solved it
+}
+?>
