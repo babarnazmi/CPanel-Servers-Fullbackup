@@ -3,10 +3,6 @@ Multi CPanel Domains-Fullbackup
 
     CPanel full backup (all files+databases+emails) PHP script
 
-#Todo	
-   - [ ] Test in live environment
-   - [ ] Test with more than 27 CPanels at once
-
    [Blog Post on blogs.silicontechnix.com](http://blogs.silicontechnix.com/?p=710)
 
     Working script to take full backup (all files+databases+emails) 
@@ -19,6 +15,10 @@ Multi CPanel Domains-Fullbackup
 
     So here is a **Open Source and Free** tool for everyone.
 
-    I wrote one for my own use and sharing here so others don’t need to re-invent the wheel.
+#Todo	
+- [ ] Test in live environment
+- [ ] Test with more than 27 CPanels at once    
+
+    I wrote one for my own use and sharing here so others don't need to re-invent the wheel.
 
   If it works for you, share your comments. (here [Blog Post on blogs.silicontechnix.com](http://blogs.silicontechnix.com/?p=710))
