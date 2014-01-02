@@ -14,10 +14,11 @@ Multi CPanel Domains-Fullbackup
     Most of the scripts for doing full backups are either old, totally unusable or  commercial. 
 
     So here is a **Open Source and Free** tool for everyone.
-
-#Todo	
+ 
+# To do
 - [ ] Test in live environment
-- [ ] Test with more than 27 CPanels at once    
+- [ ] Test with more than 27 CPanels at once
+- [ ] Installation HOW To
 
     I wrote one for my own use and sharing here so others don't need to re-invent the wheel.
 
