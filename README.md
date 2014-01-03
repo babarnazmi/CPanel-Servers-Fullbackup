@@ -14,12 +14,14 @@ Multi CPanel Domains-Fullbackup
     Most of the scripts for doing full backups are either old, totally unusable or  commercial. 
 
     So here is a **Open Source and Free** tool for everyone.
- 
-# To do
-- [ ] Test in live environment
-- [ ] Test with more than 27 CPanels at once
-- [ ] Installation HOW To
 
     I wrote one for my own use and sharing here so others don't need to re-invent the wheel.
 
   If it works for you, share your comments. (here [Blog Post on blogs.silicontechnix.com](http://blogs.silicontechnix.com/?p=710))
+  
+# Install Instructions:
+    Just extract the download zip and configure the config.php file as per your need. 
+    Add remove CPanel servers. id, password, ftp credentials and good to go. 
+    
+#To-Do
+- Test with more than 27 CPanels at once
